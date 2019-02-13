@@ -1,0 +1,7 @@
+<folders>
+    <folder id="explorer">
+        <folder id="txn" caption="Transactions">
+            <folder id="tools" caption="Admin Tools"/>
+        </folder>
+    </folder>
+</folders>
