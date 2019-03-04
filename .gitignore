@@ -16,3 +16,15 @@ Thumbs.db
 /**/nbproject/groovy-build.xml
 /**/.terminal
 /**/Thumbs.db
+/client/rameses-etracs-main/nbproject/private/
+/client/rameses-gov-etracs-signatory-template/nbproject/private/
+/client/rameses-gov-etracs-tools/nbproject/private/
+/client/rameses-gov-lgu/nbproject/private/
+/client/rameses-etracs-main/build/
+/client/rameses-etracs-main/dist/
+/client/rameses-gov-etracs-signatory-template/build/
+/client/rameses-gov-etracs-signatory-template/dist/
+/client/rameses-gov-etracs-tools/build/
+/client/rameses-gov-etracs-tools/dist/
+/client/rameses-gov-lgu/build/
+/client/rameses-gov-lgu/dist/
