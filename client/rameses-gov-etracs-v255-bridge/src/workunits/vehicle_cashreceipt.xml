@@ -1,0 +1,29 @@
+<workunit rulename="vehiclebilling" contextName="vehicle">
+    <invokers>
+        <invoker type="collectiontype:handler" caption="Vehicle Registration" 
+                 name="vehicle" formtype="serial" formno="51"/>
+        
+        <invoker type="cashreceipt:vehicle" action="init" caption="Vehicle Registration" index="-100"/> 
+        <invoker type="cashreceipt:barcode:51010" action="loadBarcode" caption="Vehicle Registration" index="-100"/>  
+        
+        <invoker type="formActions" action="doClose" caption="Back" mnemonic="B" visibleWhen="#{!completed &amp;&amp; page=='default'}" immediate="true"/>
+        <invoker type="formActions" action="findTxn" caption="Next" mnemonic="N" visibleWhen="#{!completed &amp;&amp; page=='default'}"/> 
+
+        <invoker type="formActions" action="backToDefault" caption="Back" mnemonic="B" visibleWhen="#{!completed &amp;&amp; page=='entry'}" immediate="true"/>
+        <invoker type="formActions" action="post" caption="Save" mnemonic="S" visibleWhen="#{!completed &amp;&amp; page=='entry'}" />
+                
+        <invoker type="formActions" action="_close" caption="Quit" visibleWhen="#{completed}" mnemonic="n"/>
+        <invoker type="formActions" action="createAnother" caption="New" visibleWhen="#{completed}" mnemonic="n"/>
+        <invoker type="formActions" action="reprint" caption="Reprint" mnemonic="p" visibleWhen="#{completed}"/>
+        <invoker type="formActions" action="doVoid" caption="Void" visibleWhen="#{completed}" />        
+    </invokers>
+    
+    <code class="com.rameses.gov.etracs.vehicle.models.VehicleCashReceiptModel"/>
+    
+    <pages>
+        <page name="default" template="com.rameses.treasury.common.views.BillingCashReceiptInitialPage"/>
+        <page name="entry" template="com.rameses.treasury.common.views.BillingCashReceiptPage"/>
+        <page name="completed" template="com.rameses.enterprise.treasury.cashreceipt.CashReceiptInfoPage"/>
+    </pages>
+    
+</workunit>

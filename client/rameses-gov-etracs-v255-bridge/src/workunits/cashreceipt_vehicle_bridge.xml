@@ -1,0 +1,52 @@
+<workunit rulename="vehiclebilling" contextName="vehicle">
+    <invokers>
+        <!-- collection type --> 
+        <!-- 
+        <invoker type="collectiontype:handler" caption="Vehicle Registration" 
+                 name="vehicle" formtype="serial" formno="51"  index="110" />
+        
+        <invoker type="cashreceipt:vehicle" action="start" caption="Vehicle Registration" index="-100"/>
+        <invoker type="cashreceipt:barcode:51010" action="loadBarcode" caption="Vehicle Registration" index="-100"/>
+        -->
+        
+        <invoker type="formActions" action="_close" caption="Quit" 
+                 visibleWhen="#{completed}" shortcut="ctrl Q" mnemonic="q" />
+            
+        <invoker type="formActions" action="createAnother" caption="New" 
+                 visibleWhen="#{completed}" shortcut="ctrl N" mnemonic="n"/>
+            
+        <invoker type="formActions" action="reprint" caption="Reprint" 
+                 visibleWhen="#{completed}" shortcut="ctrl P"/>
+            
+        <invoker type="formActions" action="doVoid" caption="Void" immediate="true" 
+                 visibleWhen="#{completed &amp;&amp; !entity.voided}" shortcut="ctrl V" mnemonic="v"/> 
+
+    </invokers>
+
+    <code class="com.rameses.enterprise.treasury.models.BasicBillingCashReceiptModel1"/> 
+    
+    <pageflow>
+        <start>
+            <transition to="initial" />
+            <transition name="entry" to="entry" />
+        </start>
+        <page name="initial" title="Billing Initial">
+            <transition to="end" action="doClose" caption="Back" mnemonic="B"/>
+            <transition to="entry" caption="Next" action="findTxn" mnemonic="N"/>
+        </page>
+        <page name="entry" title="#{title}">
+            <transition to="initial" caption="Back" mnemonic="B"/>
+            <transition to="completed" caption="Save1" action="post"/>
+        </page>
+        <page name="completed" title="Completed">
+            <transition to="end" caption="Close"/> 
+        </page>
+        <end/>
+    </pageflow>
+
+    <pages>
+        <page name="initial" template="com.rameses.treasury.common.views.BillingCashReceiptInitialPage"/>
+        <page name="entry" template="com.rameses.treasury.common.views.BillingCashReceiptPage"/>
+        <page name="completed" template="com.rameses.enterprise.treasury.cashreceipt.CashReceiptInfoPage"/>
+    </pages>
+</workunit>
